@@ -81,7 +81,8 @@ BarWidget {
             id: button
             bar: root.bar
             text: '▣' + (!root.healthy || root.launchError ? ' !' : !root.strip && root.count > 0 ? ' ' + root.count : '')
-            tooltipText: root.launchError || ('ScratchView — open panel\n' + root.summary + '\nRight-click for Settings')
+            // Do not pass backend errors into a host-controlled AutoText sink.
+            tooltipText: root.launchError ? 'ScratchView needs attention — open the panel' : ('ScratchView — open panel\n' + root.summary + '\nRight-click for Settings')
             onPressed: function(b) { root.restore(b === Qt.RightButton ? 'settings' : 'restore') }
         }
         WidgetButton {
@@ -99,7 +100,14 @@ BarWidget {
                     id: chipButton
                     bar: root.bar; text: chip.modelData.title || chip.modelData.app
                     labelVisible: false; fixedWidth: Style.space(105)
-                    tooltipText: (chip.modelData.title || chip.modelData.app) + '\n' + (chip.modelData.parked ? 'Parked — click to bring here' : 'On desktop — click to focus')
+                    // The host bar tooltip may use AutoText. Own this title tooltip.
+                    tooltipText: ''
+                    PlainToolTip {
+                        visible: chipButton.tooltipHovered
+                        text: (chip.modelData.title || chip.modelData.app) + '\n' + (chip.modelData.parked ? 'Parked — click to bring here' : 'On desktop — click to focus')
+                        foreground: chipButton.foreground; backgroundColor: Color.background; outline: Color.accent
+                        font.family: chipButton.fontFamily
+                    }
                     onPressed: function(b) {
                         if (b === Qt.RightButton) root.showMenu(chip.modelData,chipButton)
                         else if (b === Qt.LeftButton) root.act(chip.modelData.parked ? 'bring' : 'focus',chip.modelData)

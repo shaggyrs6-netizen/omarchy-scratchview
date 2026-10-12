@@ -93,6 +93,8 @@ Review Omarchy's confirmation: removal deletes a Git-managed plugin checkout. Ba
 
 ## Development and checks
 
+Version 1.0.1 fixes automatic HTML interpretation of window-title tooltips in both panel and bar. See [security fix and regression evidence](SECURITY-FIX-1.0.1.md). Existing 1.0.0 installations should update.
+
 ```sh
 python3 -m unittest discover -s . -q
 node test_visibility.cjs

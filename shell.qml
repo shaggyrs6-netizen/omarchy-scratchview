@@ -218,8 +218,12 @@ Scope {
                                     Text { Layout.fillWidth: true; text: card.displayTitle; color: root.fg; font.pixelSize: 14; font.family: root.fontFamily; elide: Text.ElideRight; textFormat: Text.PlainText }
                                 }
                                 MouseArea { id: titleMouse; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; enabled: !worker.running; onClicked: root.activate(card.modelData) }
-                                ToolTip.visible: titleMouse.containsMouse
-                                ToolTip.text: card.displayTitle
+                                PlainToolTip {
+                                    visible: titleMouse.containsMouse
+                                    text: card.displayTitle
+                                    foreground: root.fg; backgroundColor: root.bg; outline: root.accent
+                                    font.family: root.fontFamily
+                                }
                             }
                             Item {
                                 visible: !root.compact; Layout.fillWidth: true; Layout.fillHeight: true; clip: true

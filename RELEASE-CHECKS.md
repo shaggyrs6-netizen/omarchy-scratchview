@@ -1,4 +1,10 @@
-# Release checks — 1.0.0
+# Release checks
+
+## 1.0.1 tooltip correction
+
+34 Python tests and seven visibility checks pass (41 total), including a real Qt positive-control/zero-request regression test. Manifest validation and panel/bar-harness loads pass. See [SECURITY-FIX-1.0.1.md](SECURITY-FIX-1.0.1.md) for cause, changes and exact test scope. The lifecycle checks below were run for 1.0.0; the installation workflow is unchanged but was not rerun for this patch.
+
+## 1.0.0 initial release
 
 12 October 2026. Local release preparation, not a security audit.
 
