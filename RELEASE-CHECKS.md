@@ -12,4 +12,4 @@
 
 The tests use synthetic windows/mock dispatch. Full theme, multi-monitor, fullscreen and fresh-login behaviour is not exhaustively tested. New-user enablement on every custom bar is not claimed. The approved preview is screenshot-based composed artwork with illustrative parked states.
 
-Native installer/remover isolated checks are recorded below when complete.
+Native installer and remover passed in a Bubblewrap-isolated home directory against the public repository. Unmodified `omarchy-plugin-add ... --yes` cloned and validated the package as regular files; unmodified `omarchy-plugin-remove ... --yes` removed that test checkout. Shell list/rescan IPC was stubbed, so this verifies filesystem/manifest lifecycle, not actual bar enablement or every custom bar. The real home and installed prototype were not mutated; its widget still byte-matches development source. No rollback restoration was performed.
