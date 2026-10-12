@@ -1,0 +1,14 @@
+const fs = require('node:fs');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const context = vm.createContext({});
+vm.runInContext(fs.readFileSync(__dirname + '/Visibility.js', 'utf8'), context);
+const hide = context.shouldHide;
+assert.equal(hide(true, 0, 0, false), true, 'empty startup tucks away');
+assert.equal(hide(true, 0, 0, true), false, 'explicit empty launch stays open');
+assert.equal(hide(true, 0, 2, false), false, 'nonempty startup opens');
+assert.equal(hide(false, 1, 0, true), true, 'last card disappearing tucks away');
+assert.equal(hide(false, 0, 0, true), false, 'restoring an empty panel stays open');
+assert.equal(hide(false, 1, 1, false), false, 'retrieved cards keep panel available');
+assert.equal(hide(false, 0, 1, false), false, 'new cards do not request a visibility change');
+console.log('7 visibility checks passed');

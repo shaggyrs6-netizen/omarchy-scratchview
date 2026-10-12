@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "shaggyrs6.scratchview",
+  "name": "Omarchy ScratchView",
+  "version": "1.0.0",
+  "author": "Lee Shand",
+  "description": "A visual scratchpad with window previews, mouse-only parking and a compact bar view. See parked windows and bring them back with a click.",
+  "kinds": ["bar-widget"],
+  "entryPoints": {"barWidget": "BarWidget.qml"},
+  "barWidget": {"displayName": "Omarchy ScratchView", "category": "Windows", "allowMultiple": false, "defaultSection": "right"}
+}
